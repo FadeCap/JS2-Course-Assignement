@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Feed page" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/dist/css/index.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <title>Feed page</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg d-flex">
+        <div
+          class="container d-flex justify-content-center justify-content-between p-3"
+        >
+          <div class="profile-btn-container d-lg-none">
+            <a href="../profile/">
+              <img
+                class="img-fluid"
+                src="../assets/profile.svg"
+                alt="Profile button"
+              />
+            </a>
+          </div>
+          <div class="img-fluid">
+            <a href="/feed/">
+              <img
+                type="svg+xml"
+                width="74"
+                height="30"
+                class="m-auto d-flex"
+                src="../assets/fade.svg"
+                alt="The logo of Fade social media"
+              />
+            </a>
+          </div>
+          <div class="search-button mx-lg-5">
+            <button class="btn" id="search-toggle">
+              <img src="../assets/search-bar.svg" alt="Search button" />
+            </button>
+            <div class="search-bar">
+              <input
+                type="text"
+                class="form-control border-0 rounded-pill"
+                placeholder="Search..."
+              />
+            </div>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link mx-5" href="../profile/"><img src="../assets/profile.svg" alt="Profile page button"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="/feed/"><img src="../assets/feed.svg" width="42px" height="42px" alt="Feed page button"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mt-5">
+      <section>
+        <div class="filter-post-container">
+          <div class="filter-container mx-4">
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle mx-4"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="../assets/filter.svg" alt="Filter button" />
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Newest</a></li>
+                <li><a class="dropdown-item" href="#">Most popular</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="new-post-container">
+            <button id="new-post-button" class="btn">
+              <img src="../assets/new-post.svg" alt="New post button" />
+            </button>
+          </div>
+
+          <div id="post-modal" class="modal">
+            <div class="modal-content w-75 bg-dark border-0">
+              <span class="close" id="close-button">&times;</span>
+              <form id="post-form">
+                <div class="form-group">
+                  <label for="post-content">Post Content:</label>
+                  <textarea
+                    class="form-control border-0"
+                    id="post-content"
+                    rows="4"
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn">
+                  <img
+                    src="../assets/new-post.svg"
+                    alt="New post submit button"
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="feed-container d-flex justify-content-center">
+          <div class="card bg-secondary mt-5 m-4">
+            <div class="card-body">
+              <div class="post-picture rounded-circle">
+                <img
+                  src="../assets/post-picture.png"
+                  alt="Maker of posts profile picture"
+                />
+              </div>
+              <p class="card-text p-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <img
+                class="w-100 rounded-3 card-img"
+                src="../assets/post-image.png"
+                alt="Posts image"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-container d-flex justify-content-center">
+          <div class="card bg-secondary mt-5 m-4">
+            <div class="card-body">
+              <div class="post-picture rounded-circle">
+                <img
+                  src="../assets/post-picture.png"
+                  alt="Maker of posts profile picture"
+                />
+              </div>
+              <p class="card-text text-start p-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </p>
+              <img
+                class="w-100 rounded-3 img-fluid"
+                src="../assets/post-image.png"
+                alt="Posts image"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <script src="../app.js"></script>
+    </main>
+  </body>
+</html>
