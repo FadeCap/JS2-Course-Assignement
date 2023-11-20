@@ -1,3 +1,16 @@
+
+const API_BASE_URL = ''
+
+// Authorization to the API 
+
+const options = {
+  headers: {
+    Authorization: ''
+  },
+}
+
+const response = await fetch(``)
+
 // New post click event and display none when clicked outside or on the cross | Feed page
 document.getElementById("new-post-button").addEventListener("click", function() {
     document.getElementById("post-modal").style.display = "block";
