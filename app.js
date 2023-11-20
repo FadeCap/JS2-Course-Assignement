@@ -1,6 +1,13 @@
 
-const API_BASE_URL = ''
+const API_BASE_URL = 'https://api.noroff.dev/api/v1/social/'
 
+
+async function register() {
+  const username = document.getElementById('InputEmail').value;
+  const password = document.getElementById('inputPassword').value;
+
+  const response = await fetch('https://api.noroff.dev/api/v1/social/')
+}
 // Authorization to the API 
 
 const options = {
