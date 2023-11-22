@@ -1,23 +1,24 @@
 import fetchData from "../src/utils/fetchData.js";
 
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
-const API_ENDPOINT = "/social/posts"
+const API_ENDPOINT = "/social/posts";
 const bearerToken = localStorage.getItem("data");
+const templatePicture = "../assets/cook.jpg";
 
 const postSection = document.getElementById("post-section");
 const render = async () => {
- 
- const postsData = await fetchData(
-    `${API_BASE_URL}${API_ENDPOINT}?_author=true`, 
-       {headers: {
-        Authorization: `Bearer ${bearerToken}`
-    }}
-    );
-    console.log("test",postsData)
+  const postsData = await fetchData(
+    `${API_BASE_URL}${API_ENDPOINT}?_author=true`,
+    {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    }
+  );
+  console.log("test", postsData);
 
-    for (let i = 0; i < postsData.length; i++){
-
-        postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
+  for (let i = 0; i < postsData.length; i++) {
+    postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
               <div class="card bg-secondary mt-5 m-4">
                 <div class="card-body px-0 pb-0">
                   <div class="post-picture px-3">
@@ -31,14 +32,16 @@ const render = async () => {
                   </p>
                   <img
                     class="w-100 rounded-bottom"
-                    src="${postsData[i].media ? postsData[i].media : "../assets/cook.jpg"}"
+                    src="${
+                      postsData[i].media ? postsData[i].media : templatePicture
+                    }"
                     alt="Posts image"
                   />
                 </div>
               </div>
             </div>`;
-      };
-    }
+  }
+};
 
 render();
 
