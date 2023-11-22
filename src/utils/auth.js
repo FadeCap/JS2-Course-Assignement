@@ -1,3 +1,5 @@
+import fetchData from "./fetchData.js";
+
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 
 document.addEventListener("submit", async (event) => {
@@ -29,25 +31,15 @@ document.addEventListener("submit", async (event) => {
     options.body = JSON.stringify(body);
   }
 
-  try {
-    const response = await fetch(
+    const responseData = await fetchData(
       `${API_BASE_URL}/social/auth/${buttonPressed}`,
       options
     );
-    const responseData = await response.json();
-    if (!response.ok) {
-        const errorMessage = `Request failed with status ${response.status}: ${responseData.errors[0].message}`;
-        throw new Error(errorMessage);
-      }
-      if (buttonPressed === "register") {
-        alert("Account created");
-  
-      } else {
-         const {accessToken} = responseData;
-         localStorage.setItem("data", accessToken)
-         window.location.href="../feed/";
-      }
-  } catch (error) {
-    console.error(error);
-  }
+    if (buttonPressed === "register") {
+      alert("Account created");
+    } else {
+      const { accessToken } = responseData;
+      localStorage.setItem("data", accessToken);
+      window.location.href = "../feed/";
+    }
 });

@@ -1,20 +1,46 @@
-const API_BASE_URL = "https://api.noroff.dev/api/v1"
-const bearerToken = localStorage.getItem("data")
+import fetchData from "../src/utils/fetchData.js";
 
+const API_BASE_URL = "https://api.noroff.dev/api/v1";
+const API_ENDPOINT = "/social/posts"
+const bearerToken = localStorage.getItem("data");
 
-const posts = await fetch(
-    `${API_BASE_URL}/social/posts`,
-    {
-    headers: {
+const postSection = document.getElementById("post-section");
+const render = async () => {
+ 
+ const postsData = await fetchData(
+    `${API_BASE_URL}${API_ENDPOINT}?_author=true`, 
+       {headers: {
         Authorization: `Bearer ${bearerToken}`
-    },
-});
+    }}
+    );
+    console.log("test",postsData)
 
-const responseData = await posts.json();
-console.log(responseData)
+    for (let i = 0; i < postsData.length; i++){
 
+        postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
+              <div class="card bg-secondary mt-5 m-4">
+                <div class="card-body px-0 pb-0">
+                  <div class="post-picture px-3">
+                    <img
+                      src="../assets/post-picture.png"
+                      alt="Maker of posts profile picture"
+                    />
+                  </div>
+                  <p class="card-text p-3">
+                      ${postsData[i].body}
+                  </p>
+                  <img
+                    class="w-100 rounded-bottom"
+                    src="${postsData[i].media ? postsData[i].media : "../assets/cook.jpg"}"
+                    alt="Posts image"
+                  />
+                </div>
+              </div>
+            </div>`;
+      };
+    }
 
-
+render();
 
 // New post click event and display none when clicked outside or on the cross | Feed page
 document
