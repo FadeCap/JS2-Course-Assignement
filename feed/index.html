@@ -17,6 +17,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="/feed/feed.js" type="module"></script>
+    <script type="module" src="../src/utils/filterPosts.js"></script>
     <title>Feed page</title>
   </head>
   <body>
@@ -46,17 +47,11 @@
               />
             </a>
           </div>
-          <div class="search-button mx-lg-5">
-            <button class="btn" id="search-toggle">
-              <img src="../assets/search-bar.svg" alt="Search button" />
-            </button>
-            <div class="search-bar">
-              <input
-                type="text"
-                class="form-control border-0 rounded-pill"
-                placeholder="Search..."
-              />
-            </div>
+          <div class="container mt-4">
+            <form class="d-flex">
+              <button class="btn btn-primary" type="submit">Search</button>
+              <input class="form-control ms-2" type="text" placeholder="Search..." aria-label="Search">
+            </form>
           </div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">

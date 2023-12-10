@@ -31,6 +31,7 @@ document.addEventListener("submit", async (event) => {
     options.body = JSON.stringify(body);
   }
 
+
     const responseData = await fetchData(
       `${API_BASE_URL}/social/auth/${buttonPressed}`,
       options

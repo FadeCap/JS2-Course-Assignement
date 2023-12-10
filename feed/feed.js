@@ -3,7 +3,7 @@ import fetchData from "../src/utils/fetchData.js";
 const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const API_ENDPOINT = "/social/posts";
 const bearerToken = localStorage.getItem("data");
-const templatePicture = "../assets/cook.jpg";
+const templatePicture = "../assets/no-image-available.jpg";
 
 const postSection = document.getElementById("post-section");
 const render = async () => {
