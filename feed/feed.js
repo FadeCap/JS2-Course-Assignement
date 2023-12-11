@@ -67,3 +67,55 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
   });
+
+// Filter Posts
+
+const searchForm = document.getElementById("tagSearchForm");
+
+searchForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const data = new FormData(event.target);
+  const formData = {};
+  data.forEach((value, key) => {
+    formData[key] = value;
+  });
+  const accessToken = localStorage.getItem("data");
+  const URL = `${API_BASE_URL}${API_ENDPOINT}?_tag=${formData.searchInput}`
+  const tagResponse = await fetchData(
+    URL,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  postSection.innerHTML = ""
+  for (let i = 0; i < tagResponse.length; i++) {
+    postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
+              <div class="card bg-secondary mt-5 m-4">
+                <div class="card-body px-0 pb-0">
+                  <div class="post-picture px-3">
+                    <img
+                      src="../assets/post-picture.png"
+                      alt="Maker of posts profile picture"
+                    />
+                  </div>
+                  <p class="card-text p-3">
+                      ${tagResponse[i].body}
+                  </p>
+                  <img
+                    class="w-100 rounded-bottom"
+                    src="${
+                      tagResponse[i].media ? tagResponse[i].media : templatePicture
+                    }"
+                    alt="Posts image"
+                  />
+                </div>
+              </div>
+            </div>`;
+  }
+});
+
+// ?_tag=

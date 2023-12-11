@@ -17,6 +17,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="/feed/feed.js" type="module"></script>
+
     <title>Feed page</title>
   </head>
   <body>
@@ -46,19 +47,22 @@
               />
             </a>
           </div>
-          <div class="container m-3">
-            <form class="d-flex">
-              <button class="btn btn-primary" type="submit">Search</button>
-              <input class="form-control ms-2" style="width: 50%" type="text" placeholder="Search..." aria-label="Search">
-            </form>
-          </div>
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link mx-5" href="../profile/"><img src="../assets/profile.svg" alt="Profile page button"></a>
+                <a class="nav-link mx-5" href="../profile/"
+                  ><img src="../assets/profile.svg" alt="Profile page button"
+                /></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link mx-2" href="/feed/"><img src="../assets/feed.svg" width="42px" height="42px" alt="Feed page button"></a>
+                <a class="nav-link mx-2" href="/feed/"
+                  ><img
+                    src="../assets/feed.svg"
+                    width="42px"
+                    height="42px"
+                    alt="Feed page button"
+                /></a>
               </li>
             </ul>
           </div>
@@ -68,22 +72,19 @@
     <main class="mt-5">
       <section>
         <div class="filter-post-container">
-          <div class="filter-container mx-4">
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle mx-4"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img src="../assets/filter.svg" alt="Filter button" />
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Newest</a></li>
-                <li><a class="dropdown-item" href="#">Most popular</a></li>
-              </ul>
-            </div>
+          <div class="container m-3" style="width: 50%">
+            <form class="d-flex" id="tagSearchForm">
+              <button class="btn btn-primary" type="submit">Search</button>
+              <input
+                name="searchInput"
+                class="form-control ms-2"
+                id="inputSearch"
+                style="width: 50%"
+                type="text"
+                placeholder="Tags..."
+                aria-label="Search"
+              />
+            </form>
           </div>
           <div class="new-post-container">
             <button id="new-post-button" class="btn">
@@ -114,10 +115,7 @@
           </div>
         </div>
       </section>
-      <section id="post-section">
-       
-      </section>
-      
+      <section id="post-section"></section>
     </main>
   </body>
 </html>
