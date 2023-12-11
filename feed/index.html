@@ -96,14 +96,29 @@
             <div class="modal-content w-75 bg-dark border-0">
               <span class="close" id="close-button">&times;</span>
               <form id="post-form">
-                <div class="form-group">
-                  <label for="post-content">Post Content:</label>
-                  <textarea
-                    class="form-control border-0"
-                    id="post-content"
-                    rows="4"
-                  ></textarea>
-                </div>
+                <label for="title">Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  placeholder="Title..."
+                  required
+                />
+                <label for="description">Description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  placeholder="Description..."
+                ></textarea>
+                <label for="tags">Tags</label>
+                <input
+                  type="text"
+                  id="tags"
+                  name="tags"
+                  placeholder="Tags..."
+                />
+                <label for="image">Image URL</label>
+                <input type="text" id="image" name="image" />
                 <button type="submit" class="btn">
                   <img
                     src="../assets/new-post.svg"
