@@ -7,7 +7,6 @@ const templatePicture = "../assets/no-image-available.jpg";
 // Redirect to post ID url
 
 window.getPostByID = (e) => {
-  console.log('clicking')
   window.location.href = `?q=${e.currentTarget.id}`
 };
 const urlParams = new URLSearchParams(window.location.search);
@@ -16,7 +15,6 @@ const postID = urlParams.get("q");
 const postSection = document.getElementById("post-section");
 const render = async (id = null) => {
   const url = id ? `${API_BASE_URL}${API_ENDPOINT}/${id}` : `${API_BASE_URL}${API_ENDPOINT}?_author=true`
-  console.log('url', url)
   const postsData = await fetchData(
    url,
     {
