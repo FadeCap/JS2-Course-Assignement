@@ -28,30 +28,29 @@ const render = async (id = null) => {
   }
 
   for (let i = 0; i < postData.length; i++) {
-    postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
-              <div class="card bg-secondary mt-5 m-4">
-                <div class="card-body px-0 pb-0" onclick=" getPostByID(event)" id="${
-                  postData[i].id
-                }">
-                  <div class="post-picture px-3">
-                    <img
-                      src="../assets/post-picture.png"
-                      alt="Maker of posts profile picture"
-                    />
-                  </div>
-                  <p class="card-text p-3">
-                      ${postData[i].body}
-                  </p>
-                  <img
-                    class="w-100 rounded-bottom"
-                    src="${
-                      postData[i].media ? postData[i].media : templatePicture
-                    }"
-                    alt="Posts image"
-                  />
-                </div>
-              </div>
-            </div>`;
+    postSection.innerHTML += `<div class="feed-container d-flex justify-content-center">
+  <div class="card bg-secondary mt-5 m-4">
+    <div class="card-body px-0 pb-0" onclick=" getPostByID(event)" id="${
+      postData[i].id
+    }">
+      <div class="post-picture px-3">
+        <img src="../assets/post-picture.png" alt="Maker of posts profile picture" />
+      </div>
+      <p class="card-text p-3">${postData[i].body}</p>
+      <img class="w-100 rounded-bottom" src="${
+        postData[i].media ? postData[i].media : templatePicture
+      }" alt="Posts image" />
+      <div class="button-container d-flex justify-content-center m-2 gap-3">
+        <button class="btn btn-primary mr-2" onclick="updatePost(${
+          postData[i].id
+        })">Update</button>
+        <button class="btn btn-danger" onclick="deletePost(${
+          postData[i].id
+        })">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>`;
   }
 };
 
@@ -156,3 +155,28 @@ postForm.addEventListener("submit", async (event) => {
   const tagResponse = await fetchData(postURL, options);
   console.log(tagResponse);
 });
+
+// Delete a post
+window.deletePost = async (postId) => {
+  if (confirm("Are you sure you want to delete this post?")) {
+    const deleteURL = `${API_BASE_URL}${API_ENDPOINT}/${postId}`;
+    const deleteOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    };
+
+    try {
+      const deleteResponse = await fetchData(deleteURL, deleteOptions);
+      console.log(deleteResponse);
+
+      const postCard = document.getElementById(postId);
+      if (postCard) {
+        postCard.parentNode.removeChild(postCard);
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  }
+};
