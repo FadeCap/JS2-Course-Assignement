@@ -128,6 +128,7 @@ searchForm.addEventListener("submit", async (event) => {
             </div>`;
   }
 });
+
 // Creating post
 const postForm = document.getElementById("post-form");
 postForm.addEventListener("submit", async (event) => {
