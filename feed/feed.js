@@ -15,7 +15,6 @@ const render = async () => {
       },
     }
   );
-  console.log("test", postsData);
 
   for (let i = 0; i < postsData.length; i++) {
     postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
