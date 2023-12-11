@@ -79,7 +79,6 @@ searchForm.addEventListener("submit", async (event) => {
   data.forEach((value, key) => {
     formData[key] = value;
   });
-  const accessToken = localStorage.getItem("data");
   const URL = `${API_BASE_URL}${API_ENDPOINT}?_tag=${formData.searchInput}`
   const tagResponse = await fetchData(
     URL,
@@ -87,7 +86,7 @@ searchForm.addEventListener("submit", async (event) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${bearerToken}`,
       },
     }
   );
