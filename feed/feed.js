@@ -117,5 +117,3 @@ searchForm.addEventListener("submit", async (event) => {
             </div>`;
   }
 });
-
-// ?_tag=
