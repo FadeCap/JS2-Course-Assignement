@@ -4,22 +4,36 @@ const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const API_ENDPOINT = "/social/posts";
 const bearerToken = localStorage.getItem("data");
 const templatePicture = "../assets/no-image-available.jpg";
+// Redirect to post ID url
+
+window.getPostByID = (e) => {
+  console.log('clicking')
+  window.location.href = `?q=${e.currentTarget.id}`
+};
+const urlParams = new URLSearchParams(window.location.search);
+const postID = urlParams.get("q");
 
 const postSection = document.getElementById("post-section");
-const render = async () => {
+const render = async (id = null) => {
+  const url = id ? `${API_BASE_URL}${API_ENDPOINT}/${id}` : `${API_BASE_URL}${API_ENDPOINT}?_author=true`
+  console.log('url', url)
   const postsData = await fetchData(
-    `${API_BASE_URL}${API_ENDPOINT}?_author=true`,
+   url,
     {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
       },
     }
   );
+  let postData = postsData
+  if (!Array.isArray(postsData)) {
+  postData = [postsData]
+  }
 
-  for (let i = 0; i < postsData.length; i++) {
+  for (let i = 0; i < postData.length; i++) {
     postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
               <div class="card bg-secondary mt-5 m-4">
-                <div class="card-body px-0 pb-0">
+                <div class="card-body px-0 pb-0" onclick=" getPostByID(event)" id="${postData[i].id}">
                   <div class="post-picture px-3">
                     <img
                       src="../assets/post-picture.png"
@@ -27,12 +41,12 @@ const render = async () => {
                     />
                   </div>
                   <p class="card-text p-3">
-                      ${postsData[i].body}
+                      ${postData[i].body}
                   </p>
                   <img
                     class="w-100 rounded-bottom"
                     src="${
-                      postsData[i].media ? postsData[i].media : templatePicture
+                      postData[i].media ? postData[i].media : templatePicture
                     }"
                     alt="Posts image"
                   />
@@ -42,7 +56,8 @@ const render = async () => {
   }
 };
 
-render();
+render(postID);
+
 
 // New post click event and display none when clicked outside or on the cross | Feed page
 document
@@ -94,7 +109,7 @@ searchForm.addEventListener("submit", async (event) => {
   for (let i = 0; i < tagResponse.length; i++) {
     postSection.innerHTML += ` <div class="feed-container d-flex justify-content-center">
               <div class="card bg-secondary mt-5 m-4">
-                <div class="card-body px-0 pb-0">
+                <div class="card-body px-0 pb-0" id="${tagResponse[i].id}">
                   <div class="post-picture px-3">
                     <img
                       src="../assets/post-picture.png"
