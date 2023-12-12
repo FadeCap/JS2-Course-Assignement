@@ -31,16 +31,15 @@ document.addEventListener("submit", async (event) => {
     options.body = JSON.stringify(body);
   }
 
-
-    const responseData = await fetchData(
-      `${API_BASE_URL}/social/auth/${buttonPressed}`,
-      options
-    );
-    if (buttonPressed === "register") {
-      alert("Account created");
-    } else {
-      const { accessToken } = responseData;
-      localStorage.setItem("data", accessToken);
-      window.location.href = "../feed/";
-    }
+  const responseData = await fetchData(
+    `${API_BASE_URL}/social/auth/${buttonPressed}`,
+    options
+  );
+  if (buttonPressed === "register") {
+    alert("Account created");
+  } else {
+    const { accessToken } = responseData;
+    localStorage.setItem("data", accessToken);
+    window.location.href = "../feed/";
+  }
 });

@@ -213,29 +213,34 @@ window.updatePost = async (event, postId) => {
   updateModal.style.display = "block";
 };
 
-document.getElementById("update-form").addEventListener("submit", async (event) => {
-  event.preventDefault();
+document
+  .getElementById("update-form")
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  const updatedPostData = {
-    title: document.getElementById("update-title").value,
-    body: document.getElementById("update-description").value,
-    tags: document.getElementById("update-tags").value.split(" "),
-    media: document.getElementById("update-image").value,
-  };
+    const updatedPostData = {
+      title: document.getElementById("update-title").value,
+      body: document.getElementById("update-description").value,
+      tags: document.getElementById("update-tags").value.split(" "),
+      media: document.getElementById("update-image").value,
+    };
 
-  const updateResponse = await fetch(`${API_BASE_URL}${API_ENDPOINT}/${currentPostId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${bearerToken}`,
-    },
-    body: JSON.stringify(updatedPostData),
+    const updateResponse = await fetch(
+      `${API_BASE_URL}${API_ENDPOINT}/${currentPostId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${bearerToken}`,
+        },
+        body: JSON.stringify(updatedPostData),
+      }
+    );
+
+    if (updateResponse.ok) {
+      console.log(`Post with ID ${currentPostId} updated successfully.`);
+      updateModal.style.display = "none";
+    } else {
+      console.error(`Failed to update post with ID ${currentPostId}.`);
+    }
   });
-
-  if (updateResponse.ok) {
-    console.log(`Post with ID ${currentPostId} updated successfully.`);
-    updateModal.style.display = "none";
-  } else {
-    console.error(`Failed to update post with ID ${currentPostId}.`);
-  }
-});
