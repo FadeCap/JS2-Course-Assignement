@@ -4,6 +4,10 @@ const API_BASE_URL = "https://api.noroff.dev/api/v1";
 const API_ENDPOINT = "/social/posts";
 const bearerToken = localStorage.getItem("data");
 const templatePicture = "../assets/no-image-available.jpg";
+const updateModal = document.getElementById("update-modal");
+const updateForm = document.getElementById("update-form");
+let currentPostId = null;
+
 // Redirect to post ID url
 
 window.getPostByID = (e) => {
@@ -30,20 +34,21 @@ const render = async (id = null) => {
   for (let i = 0; i < postData.length; i++) {
     postSection.innerHTML += `<div class="feed-container d-flex justify-content-center">
   <div class="card bg-secondary mt-5 m-4">
-    <div class="card-body px-0 pb-0" onclick=" getPostByID(event)" id="${
-      postData[i].id
-    }">
+    <div class="card-body px-0 pb-0">
       <div class="post-picture px-3">
         <img src="../assets/post-picture.png" alt="Maker of posts profile picture" />
       </div>
       <p class="card-text p-3">${postData[i].body}</p>
-      <img class="w-100 rounded-bottom" src="${
-        postData[i].media ? postData[i].media : templatePicture
-      }" alt="Posts image" />
+      <img class="w-100" onclick=" getPostByID(event)" id="${
+        postData[i].id
+      }" src="${
+      postData[i].media ? postData[i].media : templatePicture
+    }" alt="Posts image" />
       <div class="button-container d-flex justify-content-center m-2 gap-3">
-        <button class="btn btn-primary mr-2" onclick="updatePost(${
-          postData[i].id
-        })">Update</button>
+      <button class="btn btn-primary mr-2" onclick="updatePost(event, ${
+        postData[i].id
+      })">Update</button>
+
         <button class="btn btn-danger" onclick="deletePost(${
           postData[i].id
         })">Delete</button>
@@ -180,3 +185,57 @@ window.deletePost = async (postId) => {
     }
   }
 };
+
+// Update post
+window.updatePost = async (event, postId) => {
+  event.stopPropagation();
+
+  currentPostId = postId;
+  const postToUpdate = await fetchData(
+    `${API_BASE_URL}${API_ENDPOINT}/${postId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      },
+    }
+  );
+
+  if (postToUpdate === null) {
+    console.error(`Post with ID ${postId} not found.`);
+    return;
+  }
+
+  document.getElementById("update-title").value = postToUpdate.title;
+  document.getElementById("update-description").value = postToUpdate.body;
+  document.getElementById("update-tags").value = postToUpdate.tags.join(" ");
+  document.getElementById("update-image").value = postToUpdate.media || "";
+
+  updateModal.style.display = "block";
+};
+
+document.getElementById("update-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const updatedPostData = {
+    title: document.getElementById("update-title").value,
+    body: document.getElementById("update-description").value,
+    tags: document.getElementById("update-tags").value.split(" "),
+    media: document.getElementById("update-image").value,
+  };
+
+  const updateResponse = await fetch(`${API_BASE_URL}${API_ENDPOINT}/${currentPostId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${bearerToken}`,
+    },
+    body: JSON.stringify(updatedPostData),
+  });
+
+  if (updateResponse.ok) {
+    console.log(`Post with ID ${currentPostId} updated successfully.`);
+    updateModal.style.display = "none";
+  } else {
+    console.error(`Failed to update post with ID ${currentPostId}.`);
+  }
+});
