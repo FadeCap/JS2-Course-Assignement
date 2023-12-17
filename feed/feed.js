@@ -33,7 +33,7 @@ const render = async (id = null) => {
 
   for (let i = 0; i < postData.length; i++) {
     postSection.innerHTML += `<div class="feed-container d-flex justify-content-center">
-  <div class="card bg-secondary mt-5 m-4">
+  <div class="card container-lg bg-secondary mt-5 m-4">
     <div class="card-body px-0 pb-0">
       <div class="post-picture px-3">
         <img src="../assets/post-picture.png" alt="Maker of posts profile picture" />
