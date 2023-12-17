@@ -15,6 +15,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="../src/utils/logOut.js"></script>
     <meta name="description" content="Profile Page" />
     <title>Profile Page</title>
   </head>
@@ -45,20 +46,26 @@
               />
             </a>
           </div>
-          <div class="profile-settings-container d-lg-none">
-            <a href="#">
-              <img src="../assets/settings.svg" alt="Profile page settings" />
-            </a>
-          </div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 link-light">
               <li class="nav-item">
-                <a class="nav-link mx-5" href="index.html"><img src="../assets/profile.svg" alt="Profile page button"></a>
+                <a class="nav-link mx-5" href="index.html"
+                  ><img src="../assets/profile.svg" alt="Profile page button"
+                /></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link mx-2" href="../feed/index.html"><img src="../assets/feed.svg" width="42px" height="42px" alt="Feed page button"></a>
+                <a class="nav-link mx-2" href="../feed/index.html"
+                  ><img
+                    src="../assets/feed.svg"
+                    width="42px"
+                    height="42px"
+                    alt="Feed page button"
+                /></a>
               </li>
             </ul>
+          </div>
+          <div class="logout-button.container">
+            <button id="logoutButton" class="btn btn-primary">Logout</button>
           </div>
         </div>
       </nav>
@@ -84,49 +91,6 @@
           >
             <p class="fw-lighter">123 Following</p>
             <p class="fw-lighter">112 Followers</p>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="feed-container d-flex justify-content-center">
-          <div class="card bg-secondary mt-5 m-4">
-            <div class="card-body">
-              <div class="post-picture rounded-circle">
-                <img
-                  src="../assets/post-picture.png"
-                  alt="Maker of posts profile picture"
-                />
-              </div>
-              <p class="card-text p-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-              <img
-                class="w-100 rounded-3 card-img"
-                src="../assets/post-image.png"
-                alt="Posts image"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="feed-container d-flex justify-content-center">
-          <div class="card bg-secondary mt-5 m-4">
-            <div class="card-body">
-              <div class="post-picture rounded-circle">
-                <img
-                  src="../assets/post-picture.png"
-                  alt="Maker of posts profile picture"
-                />
-              </div>
-              <p class="card-text text-start p-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </p>
-              <img
-                class="w-100 rounded-3 img-fluid"
-                src="../assets/post-image.png"
-                alt="Posts image"
-              />
-            </div>
           </div>
         </div>
       </section>

@@ -15,6 +15,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="./src/utils/auth.js"></script>
     <meta name="description" content="Authentication page" />
     <title>Authentication Page</title>
   </head>
@@ -36,26 +37,24 @@
     </header>
     <main class="p-3">
       <section class="d-flex justify-content-center">
-        <form
-          action="/profile"
-          class="col-12 col-lg-12 d-flex flex-column gap-3"
-        >
+        <form id="loginForm" class="col-12 col-lg-12 d-flex flex-column gap-3">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >Email address</label
-            >
+            <label for="InputEmail1" class="form-label">Email address</label>
             <input
-              required type="email"
+              name="username"
+              required
+              type="email"
               class="form-control border-0"
-              id="exampleInputEmail1"
+              id="username"
               aria-describedby="emailHelp"
             />
           </div>
           <div class="mb-5">
-            <label for="inputPassword5" class="form-label">Password</label>
+            <label for="inputPassword" class="form-label">Password</label>
             <input
+              name="password"
               type="password"
-              id="inputPassword5"
+              id="password"
               class="form-control border-0 input-bg"
               required
               minlength="8"
@@ -63,10 +62,10 @@
             />
           </div>
           <div class="d-flex gap-3 flex-row">
-            <button type="submit" class="btn btn-primary px-4 py-2">
+            <button id="login" type="submit" class="btn btn-primary px-4 py-2">
               Log in
             </button>
-            <button type="submit" class="btn btn-dark px-4 py-2">
+            <button id="register" type="submit" class="btn btn-dark px-4 py-2">
               Register
             </button>
           </div>
